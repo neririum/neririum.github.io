@@ -1,7 +1,7 @@
 # My CompSci30 Stuff
 
 ## Demos
-- [Traffic Light](https://wmcicompsci.ca/)
+- [Traffic Light](trafficlight)
 
 ## Projects
 - Interactive Scene
