@@ -5,18 +5,35 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+
+let pacman;
+let scalar = 1.0;
+let x;
+let y;
+
+function preload() {
+  pacman = loadImage("pacman.png");
+}
+
 function setup() {
-  createCanvas(800, 400);
+  createCanvas(800,400);
+  x = 400;
+  y = 250;
 }
 
 function draw() {
-  background("white");
-  //line(400, 0, 400, 400);
-  //line(0, 200, 800, 200);
+  background("black");
+  //line(windowWidth/2, 0, windowWidth/2, windowHeight);
+  //line(0, windowHeight/2, windowWidth, windowHeight/2);
   drawMaze();
+  //display pacman
+  image(pacman, x, y);
 }
 
 function drawMaze(){
+  fill("black");
+  stroke("blue");
+  strokeWeight(4);
   rect(290, 160, 20, 75); //ghost box middle
   rect(490, 160, 20, 75);
   rect(310, 215, 180, 20);
