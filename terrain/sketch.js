@@ -1,5 +1,6 @@
 // Terrain Generation
-// Object notation and arrays demo
+// Object Notation and Arrays Demo
+// March 18, 2023
 
 let terrain = [];
 let numberOfRects;
@@ -7,10 +8,9 @@ let rectWidth;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  numberOfRects = 20;
+  numberOfRects = width;
   rectWidth = width / numberOfRects;
   generateTerrain();
-
 }
 
 function draw() {
@@ -23,21 +23,21 @@ function draw() {
 
 function generateTerrain() {
   let time = 0;
-  let deltaTime = 0.01;
+  let deltaTime = 0.003;
 
   for (let x = 0; x < width; x += rectWidth) {
-    let theHeight = noise(time) *height;
-    spawnRectangles(x, theHeight);
+    let theHeight = noise(time) * height;
+    spawnRectangle(x, theHeight);
+    time += deltaTime;
   }
-
 }
 
-function spawnRectangles(leftSide, rectHeight) {
-  let thisrect = {
+function spawnRectangle(leftSide, rectHeight) {
+  let thisRect = {
     x: leftSide,
-    y: height-rectHeight,
+    y: height - rectHeight,
     w: rectWidth,
     h: rectHeight,
-  }
-  terrain.push(thisrect);
+  };
+  terrain.push(thisRect);
 }
