@@ -7,7 +7,7 @@
 - [Arrays and Objects](circles)
 - [Art Generation](art)
 - [Terrain Generation](terrain)
-- [aon](notation)
+- [Guess Who](guess)
 
 ## Projects
 - [Interactive Scene](pacman)
