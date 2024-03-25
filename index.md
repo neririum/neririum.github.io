@@ -7,6 +7,7 @@
 - [Arrays and Objects](circles)
 - [Art Generation](art)
 - [Terrain Generation](terrain)
+- [Bubble Object Notation](bubble)
 - [Guess Who](guess)
 
 ## Projects
