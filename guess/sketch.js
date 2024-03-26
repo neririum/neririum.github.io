@@ -18,7 +18,7 @@ function draw() {
     showInstruction();
   }
   else if (state === "game") {
-    background(220);
+    background("blue");
     
   }
 }
@@ -53,7 +53,7 @@ function preload() {
 
 function mousePressed() {
   if (state === "start screen") { //fix to click within box
-    if (mouseX > width/2 && mouseX < width + 150 && mouseY > height/2 + 200 && mouseY < height/2 + 200 + 80) {
+    if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 + 240 && mouseY < height/2 + 280) {
       state = "game";
     }
   }
