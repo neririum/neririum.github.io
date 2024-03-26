@@ -52,8 +52,8 @@ function preload() {
 }
 
 function mousePressed() {
-  if (state === "start screen") { //fix to click within box
-    if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 + 240 && mouseY < height/2 + 280) {
+  if (state === "start screen") { //click within box
+    if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 + 200 && mouseY < height/2 + 280) {
       state = "game";
     }
   }
