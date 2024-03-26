@@ -23,6 +23,27 @@ function draw() {
   displayBubbles();
 }
 
+function mousePressed() {
+  //did you click on a bubble
+  for (let i = theBubbles.length - 1; i >= 0; i--) {
+    if (clickedInBubble(mouseX, mouseY, theBubbles[i])) {
+      //delete clicked bubble
+      theBubbles.splice(i, 1);
+    }
+  }
+}
+
+function clickedInBubble(x, y, someBubble) {
+  let distanceAway = dist(x, y, someBubble.x, someBubble.y);
+  let radius = someBubble.size / 2;
+  if (distanceAway < radius) {
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
 function moveBubblesWithNoise() {
   for (let bubble of theBubbles) {
     //figure out where to be
