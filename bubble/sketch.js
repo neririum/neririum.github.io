@@ -67,7 +67,7 @@ function displayBubbles() {
 
 function spawnBubble() {
   let someBubble = {
-    size: random(10,30),
+    size: random(30,50),
     x: random(width),
     y: random(height),
     speed: 3,
