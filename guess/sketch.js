@@ -17,78 +17,92 @@ function draw() {
     background("black");
     showInstruction();
   }
-  else if (state === "guess who") {
+  else if (state === "game") {
     background(220);
     
   }
 }
 
 function showInstruction(){
-  //fill("white");
+  //Background
   imageMode(CENTER);
   image(backdrop, width/2, height/2, width, height);
+  //Text box #1
+  rect(width/2, height/2 -100, 750, 80, 20);
+  rectMode(CENTER, CENTER);
   textSize(42);
   textAlign(CENTER, CENTER);
   text("Guess Who - Alice in Wonderland", width/2, height/2 - 100);
+  // Text box #2
+  rect(width/2, height/2 , 850, 80, 20);
+  rectMode(CENTER, CENTER);
   textSize(42);
   textAlign(CENTER, CENTER);
   text("Ask 3 questions before guessing the character!", width/2, height/2 );
+  //Start box
+  rect(width/2, height/2 + 200, 150, 80, 20);
+  rectMode(CENTER, CENTER);
+  textSize(42);
+  textAlign(CENTER, CENTER);
+  text("Start", width/2, height/2 + 200);
 }
 
 function preload() {
   backdrop = loadImage("background.jpg");
 }
 
-function mousePressed(){
-  if (state === "start screen"){
-    state= "guess who";
+function mousePressed() {
+  if (state === "start screen") { //fix to click within box
+    if (mouseX > width/2 && mouseX < width + 150 && mouseY > height/2 + 200 && mouseY < height/2 + 200 + 80) {
+      state = "game";
+    }
   }
 }
 
-function characters(){
-  let alice = {
-    age: child,
-    haircolour: blonde,
-    gender: female,
-    eyecolour: blue,
-    race: human,
+// function characters(){
+//   let alice = {
+//     age: child,
+//     haircolour: blonde,
+//     gender: female,
+//     eyecolour: blue,
+//     race: human,
 
-  };
+//   };
 
-  let heartQueen = {
-    age: adult,
-    haircolour: black,
-    gender: female,
-    eyecolour: black,
-    race: playingCard,
-  };
+//   let heartQueen = {
+//     age: adult,
+//     haircolour: black,
+//     gender: female,
+//     eyecolour: black,
+//     race: playingCard,
+//   };
 
-  let whiteQueen = {
-    age: adult,
-    haircolour: white,
-    gender: female,
-    eyecolour: brown,
-    race: chessPiece,
+//   let whiteQueen = {
+//     age: adult,
+//     haircolour: white,
+//     gender: female,
+//     eyecolour: brown,
+//     race: chessPiece,
 
-  };
+//   };
 
-  let madHatter = {
-    age: adult,
-    haircolour: orange,
-    gender: male,
-    eyecolour: yellow,
-    race: human,
+//   let madHatter = {
+//     age: adult,
+//     haircolour: orange,
+//     gender: male,
+//     eyecolour: yellow,
+//     race: human,
 
-  };
+//   };
 
-  let cheshireCat = {
-    age: unknown,
-    haircolour: purple,
-    gender: male,
-    eyecolour: yellow,
-    race: cat,
+//   let cheshireCat = {
+//     age: unknown,
+//     haircolour: purple,
+//     gender: male,
+//     eyecolour: yellow,
+//     race: cat,
 
-  };
-}
+//   };
+// }
 
 
