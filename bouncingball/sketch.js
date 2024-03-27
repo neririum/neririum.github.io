@@ -90,7 +90,7 @@ function showInstruction(){
 
 function mousePressed(){
   if (state === "start screen"){
-    state= "bouncing ball";
+    state === "bouncing ball";
   }
 }
 
