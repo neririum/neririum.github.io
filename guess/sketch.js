@@ -59,6 +59,30 @@ function mousePressed() {
   }
 }
 
+// function startScreenBoxes() {
+//   let startBox = {
+//     x: width/2,
+//     y: height/2 + 200,
+//     w: 200,
+//     h: 80,
+//     cornerCurve: 20,
+//   };
+//   let nameBox = {
+//     x: width/2,
+//     y: height/2 - 100,
+//     w: 750,
+//     h: 80,
+//     cornerCurve: 20,
+//   };
+//   let ruleBox = {
+//     x: width/2,
+//     y: height/2,
+//     w: 850,
+//     h: 80,
+//     cornerCurve: 20,
+//   };
+// }
+
 // function characters(){
 //   let alice = {
 //     age: child,
