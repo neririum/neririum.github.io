@@ -5,6 +5,12 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+//NEXT STEPS
+//SHOW ALL FIVE CHARACTERS ON SCREEN 
+
+
+
+
 let backdrop;
 let state = "start screen";
 
@@ -13,17 +19,17 @@ function setup() {
 }
 
 function draw() {
-  if (state === "start screen") {
+  if (state === "start screen") { //SHOW INTRO SCREEN
     background("black");
     showInstruction();
   }
-  else if (state === "game") {
+  else if (state === "game") { //SHOW GAME SCREEN
     background("blue");
     
   }
 }
 
-function showInstruction(){
+function showInstruction() { //INTRO SCREEN
   //Background
   imageMode(CENTER);
   image(backdrop, width/2, height/2, width, height);
@@ -47,18 +53,26 @@ function showInstruction(){
   text("Start", width/2, height/2 + 200);
 }
 
-function preload() {
+function preload() { //LOAD INTRO SCREEN BG
   backdrop = loadImage("background.jpg");
 }
 
 function mousePressed() {
-  if (state === "start screen") { //click within box
+  if (state === "start screen") { //CLICK START BUTTON
     if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 + 200 && mouseY < height/2 + 280) {
-      state = "game";
+      state === "game";
     }
   }
 }
 
+
+
+
+
+
+
+
+//POSSIBLE USE IN FUTURE IGNORE BRAIN TOO SMALL RN
 // function startScreenBoxes() {
 //   let startBox = {
 //     x: width/2,
