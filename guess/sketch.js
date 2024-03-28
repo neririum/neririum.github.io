@@ -5,12 +5,6 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-//NEXT STEPS
-//SHOW ALL FIVE CHARACTERS ON SCREEN 
-//YOU CAN CLICK EACH CHARACTER TO SEE THEIR PROFILE & CLICK ANYWHERE TO EXIT
-//
-
-
 
 let backdrop;
 let state = "start screen";
@@ -26,7 +20,6 @@ function draw() {
   }
   else if (state === "game") { //SHOW GAME SCREEN
     background("blue");
-    
   }
 }
 
@@ -36,16 +29,16 @@ function showInstruction() { //INTRO SCREEN
   image(backdrop, width/2, height/2, width, height);
   //Text box #1
   rect(width/2, height/2 -100, 750, 80, 20);
-  rectMode(CENTER, CENTER);
+  rectMode(CENTER);
   textSize(42);
   textAlign(CENTER, CENTER);
   text("Guess Who - Alice in Wonderland", width/2, height/2 - 100);
   // Text box #2
   rect(width/2, height/2 , 850, 80, 20);
-  rectMode(CENTER, CENTER);
+  rectMode(CENTER);
   textSize(42);
   textAlign(CENTER, CENTER);
-  text("Ask 3 questions before guessing the character!", width/2, height/2 );
+  text("Ask 3 questions before guessing the character", width/2, height/2 );
   //Start box
   rect(width/2, height/2 + 200, 150, 80, 20);
   rectMode(CENTER, CENTER);
@@ -78,7 +71,7 @@ function mousePressed() {
 //   let startBox = {
 //     x: width/2,
 //     y: height/2 + 200,
-//     w: 200,
+//     w: 150,
 //     h: 80,
 //     cornerCurve: 20,
 //   };
