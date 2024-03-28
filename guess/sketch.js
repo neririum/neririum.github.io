@@ -19,7 +19,7 @@ function draw() {
     showInstruction();
   }
   else if (state === "game") { //SHOW GAME SCREEN
-    background("blue");
+    background(168, 218, 220);
   }
 }
 
@@ -41,28 +41,24 @@ function showInstruction() { //INTRO SCREEN
   text("Ask 3 questions before guessing the character", width/2, height/2 );
   //Start box
   rect(width/2, height/2 + 200, 150, 80, 20);
-  rectMode(CENTER, CENTER);
+  rectMode(CENTER);
   textSize(42);
   textAlign(CENTER, CENTER);
   text("Start", width/2, height/2 + 200);
 }
 
-function preload() { //LOAD INTRO SCREEN BG
+function preload() { //LOAD IMAGES
   backdrop = loadImage("background.jpg");
+
 }
 
 function mousePressed() {
   if (state === "start screen") { //CLICK START BUTTON
-    if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 + 200 && mouseY < height/2 + 280) {
-      state === "game";
+    if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 + 160 && mouseY < height/2 + 240) {
+      state = "game";
     }
   }
 }
-
-
-
-
-
 
 
 
