@@ -29,23 +29,24 @@ function draw() {
   }
 }
 
-function gameScreen() {
+function gameScreen() { //Game Screen
   //Alice image
   imageMode(CENTER);
-  image(aliceImg, width/6, height/3, 200, 200);
+  image(aliceImg, width/6, height/3, width/10, width/10);
   //Mad Hatter image
   imageMode(CENTER);
-  image(madHatterImg, width/6 + 1/6, height/3, 200, 200);
+  image(madHatterImg, width/6 *2, height/3, width/10, width/10);
   //Cheshire cat image
   imageMode(CENTER);
-  image(cheshireCatImg, width/6 + 2/6, height/3, 200, 200);
+  image(cheshireCatImg, width/6 *3, height/3, width/10, width/10);
   //Queen of Hearts image
   imageMode(CENTER);
-  image(queenHeartsImg, width/6 + 3/6, height/3, 200, 200);
+  image(queenHeartsImg, width/6 *4, height/3, width/10, width/10);
   //White queen image
   imageMode(CENTER);
-  image(whiteQueenImg, width/6 + 4/6, height/3, 200, 200);
- 
+  image(whiteQueenImg, width/6 *5, height/3, width/10, width/10);
+
+  //ask player for input
 }
 
 function showInstruction() { //INTRO SCREEN
@@ -88,6 +89,11 @@ function mousePressed() {
     if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 + 160 && mouseY < height/2 + 240) {
       state = "game";
     }
+  else if (state === "game") { // CLICK ON IMAGES FOR INFO
+    if (mouseX > width/6 - width/5 && mouseX < width/6 + width/5 && mouseY > height/3 + width/5 && height/3 + width/5) {
+      state = "aliceInfo";
+    }
+  }
   }
 }
 
