@@ -7,6 +7,11 @@
 
 
 let backdrop;
+let aliceImg;
+let madHatterImg;
+let cheshireCatImg;
+let queenHeartsImg;
+let whiteQueenImg;
 let state = "start screen";
 
 function setup() {
@@ -20,7 +25,27 @@ function draw() {
   }
   else if (state === "game") { //SHOW GAME SCREEN
     background(168, 218, 220);
+    gameScreen();
   }
+}
+
+function gameScreen() {
+  //Alice image
+  imageMode(CENTER);
+  image(aliceImg, width/6, height/3, 200, 200);
+  //Mad Hatter image
+  imageMode(CENTER);
+  image(madHatterImg, width/6 + 1/6, height/3, 200, 200);
+  //Cheshire cat image
+  imageMode(CENTER);
+  image(cheshireCatImg, width/6 + 2/6, height/3, 200, 200);
+  //Queen of Hearts image
+  imageMode(CENTER);
+  image(queenHeartsImg, width/6 + 3/6, height/3, 200, 200);
+  //White queen image
+  imageMode(CENTER);
+  image(whiteQueenImg, width/6 + 4/6, height/3, 200, 200);
+ 
 }
 
 function showInstruction() { //INTRO SCREEN
@@ -49,6 +74,12 @@ function showInstruction() { //INTRO SCREEN
 
 function preload() { //LOAD IMAGES
   backdrop = loadImage("background.jpg");
+  aliceImg = loadImage("alice.png");
+  madHatterImg = loadImage("madhatter.png");
+  cheshireCatImg = loadImage("cheshirecat.png");
+  queenHeartsImg = loadImage("queenhearts.jpg");
+  whiteQueenImg = loadImage("whitequeen.jpg");
+
 
 }
 
