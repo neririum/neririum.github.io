@@ -5,22 +5,22 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-
 let backdrop;
 let aliceImg;
 let madHatterImg;
 let cheshireCatImg;
 let queenHeartsImg;
 let whiteQueenImg;
-let aliceScreen = [];
-let hatterScreen = [];
-let cheshireScreen = [];
-let qHeartsScreen = [];
-let wQueenScreen = [];
 let state = "start screen";
+let aliceInfo = [];
+let cheshireCatInfo = [];
+let madHatterInfo = [];
+let heartQueenInfo = [];
+let whiteQueenInfo = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  characters();
 }
 
 function draw() {
@@ -31,16 +31,25 @@ function draw() {
   else if (state === "game") { //SHOW GAME SCREEN
     background(168, 218, 220);
     gameScreen();
+    
   }
-  else if (state === "aliceInfo") {
-    background("white");
+  else if (state === "question") {
+    var question = prompt("What do you want to ask?");
+    examinePrompt(question);
+    //text(question, width/2, height/2);
+  }
+}
+
+function  examinePrompt(userInput) {
+  if (userInput === "eyes") {
+    print(aliceInfo.eyecolour, width/2, height/2);
   }
 }
 
 function gameScreen() { //Game Screen
   //Alice image
   imageMode(CENTER);
-  image(aliceImg, aliceScreen.x, aliceScreen.y, aliceScreen.side, aliceScreen.side);
+  image(aliceImg, width/6, height/3, width/10, width/10);
   //Mad Hatter image
   imageMode(CENTER);
   image(madHatterImg, width/6 *2, height/3, width/10, width/10);
@@ -53,74 +62,15 @@ function gameScreen() { //Game Screen
   //White queen image
   imageMode(CENTER);
   image(whiteQueenImg, width/6 *5, height/3, width/10, width/10);
+  //TEXT 
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  text("Ask for either AGE, HAIR, EYES, GENDER, or RACE", width/2, height/3 *2);
 
   //ask player for input
+  
 }
 
-function showAliceImg(){
-  let aliceSize = {
-    x: windowWidth/6,
-    y: windowHeight/3,
-    side: windowWidth/10,
-    leftX: x - windowWidth/5,
-    rightX: x + windowWidth/5,
-    upY: y - windowWidth/5,
-    downY: y + windowWidth/5,
-  };
-  aliceScreen.push(aliceSize);
-}
-
-function showHatterImg(){
-  let hatterSize = {
-    x: windowWidth/6*2,
-    y: windowHeight/3,
-    side: windowWidth/10,
-    leftX: x - windowWidth/5,
-    rightX: x + windowWidth/5,
-    upY: y - windowWidth/5,
-    downY: y + windowWidth/5,
-  };
-  hatterScreen.push(hatterSize);
-}
-
-function showCheshireImg(){
-  let cheshireSize = {
-    x: windowWidth/6*3,
-    y: windowHeight/3,
-    side: windowWidth/10,
-    leftX: x - windowWidth/5,
-    rightX: x + windowWidth/5,
-    upY: y - windowWidth/5,
-    downY: y + windowWidth/5,
-  };
-  cheshireScreen.push(cheshireSize);
-}
-
-function showQHeartsImg(){
-  let qHeartsSize = {
-    x: windowWidth/6*4,
-    y: windowHeight/3,
-    side: windowWidth/10,
-    leftX: x - windowWidth/5,
-    rightX: x + windowWidth/5,
-    upY: y - windowWidth/5,
-    downY: y + windowWidth/5,
-  };
-  qHeartsScreen.push(qHeartsSize);
-}
-
-function showWQueenImg(){
-  let wQueenSize = {
-    x: windowWidth/6*5,
-    y: windowHeight/3,
-    side: windowWidth/10,
-    leftX: x - windowWidth/5,
-    rightX: x + windowWidth/5,
-    upY: y - windowWidth/5,
-    downY: y + windowWidth/5,
-  };
-  wQueenScreen.push(wQueenSize);
-}
 
 function showInstruction() { //INTRO SCREEN
   //Background
@@ -162,13 +112,61 @@ function mousePressed() {
     if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 + 160 && mouseY < height/2 + 240) {
       state = "game";
     }
-  else if (state === "game") { // CLICK ON IMAGES FOR INFO
-    if (mouseX > aliceScreen.leftX && mouseX < rightX && mouseY > upY && mouseY < downY) {
-      state = "aliceInfo";
-    }
   }
+  else if (state === "game") {
+    state = "question";
+
   }
 }
+
+function characters(){
+  let alice = {
+    age: "child",
+    haircolour: "blonde",
+    gender: "female",
+    eyecolour: "blue",
+    race: "human",
+  };
+  aliceInfo.push(alice);
+
+  let heartQueen = {
+    age: "adult",
+    haircolour: "black",
+    gender: "female",
+    eyecolour: "black",
+    race: "playingCard",
+  };
+  heartQueenInfo.push(heartQueen);
+
+  let whiteQueen = {
+    age: "adult",
+    haircolour: "white",
+    gender: "female",
+    eyecolour: "brown",
+    race: "chessPiece",
+  };
+  whiteQueenInfo.push(whiteQueen);
+
+  let madHatter = {
+    age: "adult",
+    haircolour: "orange",
+    gender: "male",
+    eyecolour: "yellow",
+    race: "human",
+  };
+  madHatterInfo.push(madHatter);
+
+  let cheshireCat = {
+    age: "unknown",
+    haircolour: "purple",
+    gender: "male",
+    eyecolour: "yellow",
+    race: "cat",
+
+  };
+  cheshireCatInfo.push(madHatter);
+}
+
 
 
 
