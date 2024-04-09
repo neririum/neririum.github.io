@@ -5,7 +5,6 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-
 let backdrop;
 let aliceImg;
 let madHatterImg;
@@ -13,9 +12,15 @@ let cheshireCatImg;
 let queenHeartsImg;
 let whiteQueenImg;
 let state = "start screen";
+let aliceInfo = [];
+let cheshireCatInfo = [];
+let madHatterInfo = [];
+let heartQueenInfo = [];
+let whiteQueenInfo = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  characters();
 }
 
 function draw() {
@@ -26,6 +31,18 @@ function draw() {
   else if (state === "game") { //SHOW GAME SCREEN
     background(168, 218, 220);
     gameScreen();
+    
+  }
+  else if (state === "question") {
+    var question = prompt("What do you want to ask?");
+    examinePrompt(question);
+    //text(question, width/2, height/2);
+  }
+}
+
+function  examinePrompt(userInput) {
+  if (userInput === "eyes") {
+    print(aliceInfo.eyecolour, width/2, height/2);
   }
 }
 
@@ -45,9 +62,15 @@ function gameScreen() { //Game Screen
   //White queen image
   imageMode(CENTER);
   image(whiteQueenImg, width/6 *5, height/3, width/10, width/10);
+  //TEXT 
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  text("Ask for either AGE, HAIR, EYES, GENDER, or RACE", width/2, height/3 *2);
 
   //ask player for input
+  
 }
+
 
 function showInstruction() { //INTRO SCREEN
   //Background
@@ -89,13 +112,61 @@ function mousePressed() {
     if (mouseX > width/2 - 75 && mouseX < width/2 + 75 && mouseY > height/2 + 160 && mouseY < height/2 + 240) {
       state = "game";
     }
-  else if (state === "game") { // CLICK ON IMAGES FOR INFO
-    if (mouseX > width/6 - width/5 && mouseX < width/6 + width/5 && mouseY > height/3 + width/5 && height/3 + width/5) {
-      state = "aliceInfo";
-    }
   }
+  else if (state === "game") {
+    state = "question";
+
   }
 }
+
+function characters(){
+  let alice = {
+    age: "child",
+    haircolour: "blonde",
+    gender: "female",
+    eyecolour: "blue",
+    race: "human",
+  };
+  aliceInfo.push(alice);
+
+  let heartQueen = {
+    age: "adult",
+    haircolour: "black",
+    gender: "female",
+    eyecolour: "black",
+    race: "playingCard",
+  };
+  heartQueenInfo.push(heartQueen);
+
+  let whiteQueen = {
+    age: "adult",
+    haircolour: "white",
+    gender: "female",
+    eyecolour: "brown",
+    race: "chessPiece",
+  };
+  whiteQueenInfo.push(whiteQueen);
+
+  let madHatter = {
+    age: "adult",
+    haircolour: "orange",
+    gender: "male",
+    eyecolour: "yellow",
+    race: "human",
+  };
+  madHatterInfo.push(madHatter);
+
+  let cheshireCat = {
+    age: "unknown",
+    haircolour: "purple",
+    gender: "male",
+    eyecolour: "yellow",
+    race: "cat",
+
+  };
+  cheshireCatInfo.push(madHatter);
+}
+
 
 
 
