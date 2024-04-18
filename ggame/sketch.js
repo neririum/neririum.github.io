@@ -5,19 +5,39 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-
-let grid;
+let grid = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1 ,1 ,1]];
 let cellSize;
 const GRID_SIZE = 20;
-const PLAYER =9;
+const PLAYER = 9;
 const OPENTILE = 0;
 const IMPASSIBLE = 1;
 let player = {
-  x: 0,
-  y: 0,
+  x: 10,
+  y: 19,
 };
-
-
+let pathImg;
+let wallImg;
+let fogImg;
+            
 function setup() {
   //make the canvas the largest square that you can...
   if (windowWidth < windowHeight) {
@@ -27,14 +47,21 @@ function setup() {
     createCanvas(windowHeight, windowHeight);
   }
 
-  //if randomizing the grid, do this:
-  grid = generateRandomGrid(GRID_SIZE, GRID_SIZE);
-  
-  //this is dumb -- should check if this is the right size!
-  cellSize = height/grid.length;
+  cellSize= height/grid.length;
 
   //add player to grid
-  grid[player.y][player.x] = PLAYER;
+  grid[19][10] = PLAYER;
+}
+
+function draw() {
+  background(220);
+  displayGrid();
+}
+
+function preload() {
+  pathImg = loadImage("tile.png");
+  wallImg = loadImage("brick.png");
+  fogImg = loadImage("shadow.jpg");
 }
 
 function windowResized() {
@@ -49,20 +76,26 @@ function windowResized() {
   cellSize = height/grid.length;
 }
 
-function draw() {
-  background(220);
-  displayGrid();
+function displayGrid() {
+  for (let y = 0; y < grid.length; y++) {
+    for (let x = 0; x < grid[y].length; x++) {
+      if (grid[y][x] === IMPASSIBLE){
+        fill("black");
+        image(wallImg, x * cellSize, y * cellSize, cellSize);
+      }
+      else if(grid[y][x] === OPENTILE) {
+        fill("white");
+        image(pathImg, x * cellSize, y * cellSize, cellSize);
+      }
+      else if (grid[y][x] === player) {
+        fill("red");
+        square(x * cellSize, y * cellSize, cellSize);
+      }
+    }
+  }
 }
 
 function keyPressed() {
-  if (key === "r") {
-    grid = generateRandomGrid(GRID_SIZE, GRID_SIZE);
-  }
-
-  if (key === "e") {
-    grid = generateEmptyGrid(GRID_SIZE, GRID_SIZE);
-  }
-
   if (key === "w") {
     movePlayer(player.x + 0, player. y - 1); //0 on x-axis, -1 on y-axis
   }
@@ -103,71 +136,4 @@ function movePlayer(x, y) {
 }
 
 
-function mousePressed() {
-  let x = Math.floor(mouseX/cellSize);
-  let y = Math.floor(mouseY/cellSize);
-
-  //toggle self
-  toggleCell(x, y);
-}
-
-function toggleCell(x, y) {
-  // make sure the cell you're toggling is in the grid...
-  if (x < GRID_SIZE && y < GRID_SIZE &&
-      x >= 0 && y >= 0) {
-    //toggle the color of the cell
-    if (grid[y][x] === OPENTILE) {
-      grid[y][x] = IMPASSIBLE;
-    }
-    else if (grid[y][x] === IMPASSIBLE) {
-      grid[y][x] = OPENTILE;
-    }
-  }
-}
-
-function displayGrid() {
-  for (let y = 0; y < grid.length; y++) {
-    for (let x = 0; x < grid[y].length; x++) {
-      if (grid[y][x] === IMPASSIBLE) {
-        fill("black");
-        image(flowerImg, x * cellSize, y * cellSize, cellSize);
-      }
-      else if (grid[y][x] === OPENTILE){
-        fill("white");
-        image(grassImg, x * cellSize, y * cellSize, cellSize)
-      }
-      else if (grid[y][x] === PLAYER) {
-        fill("red");
-        square(x * cellSize, y * cellSize, cellSize);
-      }
-    }
-  }
-}
-
-function generateRandomGrid(cols, rows) {
-  let emptyArray = [];
-  for (let y = 0; y < rows; y++) {
-    emptyArray.push([]);
-    for (let x = 0; x < cols; x++) {
-      //half the time, be a 1. Other half, be a 0.
-      if (random(100) < 50) {
-        emptyArray[y].push(0);
-      }
-      else {
-        emptyArray[y].push(1);
-      }
-    }
-  }
-  return emptyArray;
-}
-
-function generateEmptyGrid(cols, rows) {
-  let emptyArray = [];
-  for (let y = 0; y < rows; y++) {
-    emptyArray.push([]);
-    for (let x = 0; x < cols; x++) {
-      emptyArray[y].push(0);
-    }
-  }
-  return emptyArray;
-}
+            
