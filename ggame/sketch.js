@@ -5,7 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let grid = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1],
+let grid = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1], //MAIN SCREEN
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -25,6 +25,15 @@ let grid = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1],
   [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1 ,1 ,1]];
+
+let maze = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+  [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
+  [1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+  [1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1],
+  [1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1],
+]
 let cellSize;
 const GRID_SIZE = 20;
 const PLAYER = 9;
@@ -50,7 +59,7 @@ function setup() {
   cellSize= height/grid.length;
 
   //add player to grid
-  grid[19][10] = PLAYER;
+  grid[player.y][player.x] = PLAYER;
 }
 
 function draw() {
@@ -87,7 +96,7 @@ function displayGrid() {
         fill("white");
         image(pathImg, x * cellSize, y * cellSize, cellSize);
       }
-      else if (grid[y][x] === player) {
+      else if (grid[y][x] === PLAYER) {
         fill("red");
         square(x * cellSize, y * cellSize, cellSize);
       }

@@ -9,7 +9,10 @@
 - [Terrain Generation](terrain)
 - [Bubble Object Notation](bubble)
 - [Guess Who](guess)
+- [2-D Grid](grid)
+- [Life](life)
+- [Character in grid](grid2)
+- [Grid Game](ggame)
 
 ## Projects
 - [Interactive Scene](pacman)
-- [Game](wonderland)

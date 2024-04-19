@@ -17,8 +17,8 @@
 let grid;
 let cellSize;
 const GRID_SIZE = 10;
-const PLAYER =9;
-const OPENTILE = 0;
+const PLAYER = 9;
+const OPEN_TILE = 0;
 const IMPASSIBLE = 1;
 let player = {
   x: 0,
@@ -26,11 +26,17 @@ let player = {
 };
 let grassImg;
 let flowerImg;
+let backgroundMusic;
+let cantWalkSound;
+let state = "start screen";
 
 function preload() {
-  grassImg = loadImage("grass_tile.png");
   flowerImg = loadImage("flower_tile.png");
+  grassImg = loadImage("grass_tile.png");
+  backgroundMusic = loadSound("TownTheme.mp3");
+  cantWalkSound = loadSound("magic1.wav");
 }
+
 
 function setup() {
   //make the canvas the largest square that you can...
@@ -47,8 +53,12 @@ function setup() {
   //this is dumb -- should check if this is the right size!
   cellSize = height/grid.length;
 
-  //add player to grid
+  //add player to the grid
   grid[player.y][player.x] = PLAYER;
+
+  //equalize my sounds
+  backgroundMusic.setVolume(0.4);
+  cantWalkSound.setVolume(1.0);
 }
 
 function windowResized() {
@@ -64,8 +74,13 @@ function windowResized() {
 }
 
 function draw() {
-  background(220);
-  displayGrid();
+  if (state === "start screen") {
+    background("black");
+  }
+  else if (state === "game") {
+    background(220);
+    displayGrid();
+  }
 }
 
 function keyPressed() {
@@ -77,29 +92,32 @@ function keyPressed() {
     grid = generateEmptyGrid(GRID_SIZE, GRID_SIZE);
   }
 
-  if (key === "w") {
-    movePlayer(player.x + 0, player. y - 1); //0 on x-axis, -1 on y-axis
+  if (key === "w") {   //up
+    movePlayer(player.x + 0, player.y - 1); //0 on x axis, -1 on y axis
   }
 
-  if (key === "s") {
-    movePlayer(player.x + 0,  player. y + 1); //0 on x-axis, 1 on y-axis
+  if (key === "s") {   //down
+    movePlayer(player.x + 0, player.y + 1); //0 on x axis, 1 on y axis
   }
 
-  if (key === "d") {
-    movePlayer(player.x + 1, player. y + 0); //1 on x-axis, 0 on y-axis
+  if (key === "d") {   //right
+    movePlayer(player.x + 1, player.y + 0); //1 on x axis, 0 on y axis
   }
 
-  if (key === "a") {
-    movePlayer(player.x - 1,  player. y + 0); //-1 on x-axis, 0 on y-axis
+  if (key === "a") {   //left
+    movePlayer(player.x - 1, player.y + 0); //-1 on x axis, 0 on y axis
   }
 
+  if (key === " " && state === "start screen") {
+    state = "game";
+    backgroundMusic.loop();
+  }
 }
 
 function movePlayer(x, y) {
-
-  //dont move off the grid and only move into open tiles
+  //don't move off the grid, and only move into open tiles
   if (x < GRID_SIZE && y < GRID_SIZE &&
-    x >= 0 && y >= 0 && grid[y][x] === OPENTILE) {
+      x >= 0 && y >= 0 && grid[y][x] === OPEN_TILE) {
     //previous player location
     let oldX = player.x;
     let oldY = player.y;
@@ -109,13 +127,15 @@ function movePlayer(x, y) {
     player.y = y;
 
     //reset old location to be an empty tile
-    grid[oldY][oldX] = OPENTILE;
+    grid[oldY][oldX] = OPEN_TILE;
 
+    //move the player to the new spot
     grid[player.y][player.x] = PLAYER;
   }
-
+  else {
+    cantWalkSound.play();
+  }
 }
-
 
 function mousePressed() {
   let x = Math.floor(mouseX/cellSize);
@@ -130,11 +150,11 @@ function toggleCell(x, y) {
   if (x < GRID_SIZE && y < GRID_SIZE &&
       x >= 0 && y >= 0) {
     //toggle the color of the cell
-    if (grid[y][x] === OPENTILE) {
+    if (grid[y][x] === OPEN_TILE) {
       grid[y][x] = IMPASSIBLE;
     }
     else if (grid[y][x] === IMPASSIBLE) {
-      grid[y][x] = OPENTILE;
+      grid[y][x] = OPEN_TILE;
     }
   }
 }
@@ -143,12 +163,12 @@ function displayGrid() {
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid[y].length; x++) {
       if (grid[y][x] === IMPASSIBLE) {
-        fill("black");
+        // fill("black");
         image(flowerImg, x * cellSize, y * cellSize, cellSize);
       }
-      else if (grid[y][x] === OPENTILE){
-        fill("white");
-        image(grassImg, x * cellSize, y * cellSize, cellSize)
+      else if (grid[y][x] === OPEN_TILE) {
+        // fill("white");
+        image(grassImg, x * cellSize, y * cellSize, cellSize);
       }
       else if (grid[y][x] === PLAYER) {
         fill("red");
