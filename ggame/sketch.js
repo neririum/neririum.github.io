@@ -7,26 +7,26 @@
 
 let grid = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1], //MAIN SCREEN
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 0, 2, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, Q, Q, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1 ,1 ,1]];
 
-let maze = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+let maze = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], //MAZE GAME
   [1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
   [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
   [1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
@@ -44,6 +44,8 @@ const GRID_SIZE = 20;
 const PLAYER = 9;
 const OPENTILE = 0;
 const IMPASSIBLE = 1;
+const KEY = 2;
+const LOCK = 4;
 let player = {
   x: 10,
   y: 19,
@@ -55,6 +57,8 @@ let chestBg;
 let mazeBg;
 let quizBg;
 let replicateBg;
+let keyImg;
+let lockImg;
 let state = "mainRoom";
             
 function setup() {
@@ -68,12 +72,13 @@ function setup() {
 
   cellSize= height/grid.length;
 
-  //add player to grid
+  //add player to MAIN SCREEN
   grid[player.y][player.x] = PLAYER;
 }
 
 function draw() {
-  if (state === "mainRoom") {
+  //CHANGE SCREEN DEPENDING ON STATE
+  if (state === "mainRoom") { 
     background(220);
     displayGrid();
   }
@@ -99,6 +104,8 @@ function preload() {
   chestBg = loadImage("chest_background.jpg");
   quizBg = loadImage("quiz_background.jpg");
   replicateBg = loadImage("replicate_background.jpg");
+  keyImg = loadImage("key.png");
+  lockImg = loadImage("lock.png");
 }
 
 function windowResized() {
@@ -113,7 +120,7 @@ function windowResized() {
   cellSize = height/grid.length;
 }
 
-function displayGrid() {
+function displayGrid() { //MAIN SCREEN GRID
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid[y].length; x++) {
       if (grid[y][x] === IMPASSIBLE){
@@ -128,11 +135,18 @@ function displayGrid() {
         fill("red");
         square(x * cellSize, y * cellSize, cellSize);
       }
+      else if(grid[y][x] === KEY) {
+        image(keyImg, x*cellSize, y*cellSize, cellSize);
+      }
+      else if(grid[y][x] === LOCK) {
+        image(lockImg, x*cellSize, y*cellSize, cellSize);
+      }
     }
   }
 }
 
 function keyPressed() {
+  //MOVE PLAYER
   if (key === "w") {
     movePlayer(player.x + 0, player. y - 1); //0 on x-axis, -1 on y-axis
   }
