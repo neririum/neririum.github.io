@@ -34,7 +34,7 @@ function draw() {
     
   }
   else if (state === "question") {
-    var question = prompt("What do you want to ask?");
+    let question = prompt("What do you want to ask?");
     examinePrompt(question);
     //text(question, width/2, height/2);
   }

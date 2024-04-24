@@ -19,7 +19,7 @@ let grid = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1], //MAIN
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, Q, Q, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -33,7 +33,12 @@ let maze = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
   [1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1],
   [1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1],
-]
+  [1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1],
+  [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+  [1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1],
+  [1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+];
 let cellSize;
 const GRID_SIZE = 20;
 const PLAYER = 9;
@@ -46,6 +51,11 @@ let player = {
 let pathImg;
 let wallImg;
 let fogImg;
+let chestBg;
+let mazeBg;
+let quizBg;
+let replicateBg;
+let state = "mainRoom";
             
 function setup() {
   //make the canvas the largest square that you can...
@@ -63,14 +73,32 @@ function setup() {
 }
 
 function draw() {
-  background(220);
-  displayGrid();
+  if (state === "mainRoom") {
+    background(220);
+    displayGrid();
+  }
+  else if (state === "mazeRoom") {
+    image(mazeBg,0, 0, windowWidth, windowHeight);
+  }
+  else if (state === "chestRoom") {
+    image(chestBg, 0, 0, windowWidth, windowHeight);
+  }
+  else if (state === "quizRoom") {
+    image(quizBg, 0, 0, windowWidth, windowHeight);
+  }
+  else if (state === "replicateRoom") {
+    image(replicateBg, 0, 0, windowWidth, windowHeight);
+  }
 }
 
 function preload() {
   pathImg = loadImage("tile.png");
   wallImg = loadImage("brick.png");
   fogImg = loadImage("shadow.jpg");
+  mazeBg = loadImage("maze_background.png");
+  chestBg = loadImage("chest_background.jpg");
+  quizBg = loadImage("quiz_background.jpg");
+  replicateBg = loadImage("replicate_background.jpg");
 }
 
 function windowResized() {
