@@ -5,6 +5,10 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+
+//TO DO: TRANSITIONS FROM MAIN SCREEN TO GAME SCREENS AND BACK WHEN COMPLETE GAME, FIGURE OUT THE LOCK PIC, ONLY LET
+//PLAYER ESCAPE WHEN THEY COLLECT ALL KEYS, WHEN KEY IS PRESSED GAME START, FOG IN ALL ROOM WHEN NOT IN THEM
+
 let grid = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1], //MAIN SCREEN
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
@@ -84,6 +88,8 @@ function draw() {
   }
   else if (state === "mazeRoom") {
     image(mazeBg,0, 0, windowWidth, windowHeight);
+    player.x = 1;
+    player.y = 1;
   }
   else if (state === "chestRoom") {
     image(chestBg, 0, 0, windowWidth, windowHeight);
@@ -164,6 +170,7 @@ function keyPressed() {
   }
 
 }
+
 
 function movePlayer(x, y) {
 
