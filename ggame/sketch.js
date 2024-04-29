@@ -12,8 +12,8 @@
 let grid = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1], //MAIN SCREEN
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 2, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -44,7 +44,7 @@ let maze = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], //MAZE GAME
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 let cellSize;
-const GRID_SIZE = 20;
+let GRID_SIZE = 20;
 const PLAYER = 9;
 const OPENTILE = 0;
 const IMPASSIBLE = 1;
@@ -63,7 +63,7 @@ let quizBg;
 let replicateBg;
 let keyImg;
 let lockImg;
-let state = "mainRoom";
+let state = "mazeRoom";
             
 function setup() {
   //make the canvas the largest square that you can...
@@ -87,9 +87,11 @@ function draw() {
     displayGrid();
   }
   else if (state === "mazeRoom") {
-    image(mazeBg,0, 0, windowWidth, windowHeight);
+    let GRID_SIZE = 12;
+    displayMaze();
     player.x = 1;
     player.y = 1;
+  
   }
   else if (state === "chestRoom") {
     image(chestBg, 0, 0, windowWidth, windowHeight);
@@ -126,6 +128,26 @@ function windowResized() {
   cellSize = height/grid.length;
 }
 
+function displayMaze () {
+  //image(mazeBg, 0, 0, maze.length, maze.length); //Background
+  for (let y = 0; y < maze.length; y++) {
+    for (let x = 0; x < maze[y].length; x++) {
+      if (maze[y][x] === IMPASSIBLE){
+        fill("black");
+        image(wallImg, x * cellSize, y * cellSize, cellSize);
+      }
+      else if(maze[y][x] === OPENTILE) {
+        fill("white");
+        image(pathImg, x * cellSize, y * cellSize, cellSize);
+      }
+      else if (maze[y][x] === PLAYER) {
+        fill("red");
+        square(x * cellSize, y * cellSize, cellSize);
+      }
+    }
+  }
+}
+
 function displayGrid() { //MAIN SCREEN GRID
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid[y].length; x++) {
@@ -142,10 +164,10 @@ function displayGrid() { //MAIN SCREEN GRID
         square(x * cellSize, y * cellSize, cellSize);
       }
       else if(grid[y][x] === KEY) {
-        image(keyImg, x*cellSize, y*cellSize, cellSize);
+        image(keyImg, x*cellSize, y*cellSize, cellSize, cellSize);
       }
       else if(grid[y][x] === LOCK) {
-        image(lockImg, x*cellSize, y*cellSize, cellSize);
+        image(lockImg, x*cellSize, y*cellSize, cellSize, cellSize);
       }
     }
   }
