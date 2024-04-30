@@ -13,6 +13,7 @@
 - [Life](life)
 - [Character in grid](grid2)
 - [Grid Game](ggame)
+- [Walker OOF](walker)
 
 ## Projects
 - [Interactive Scene](pacman)
