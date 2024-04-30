@@ -6,7 +6,7 @@
 // - describe what you did to take this project "above and beyond"
 
 
-//TO DO: TRANSITIONS FROM MAIN SCREEN TO GAME SCREENS AND BACK WHEN COMPLETE GAME, FIGURE OUT THE LOCK PIC, ONLY LET
+//TO DO: TRANSITIONS FROM MAIN SCREEN TO GAME SCREENS AND BACK WHEN COMPLETE GAME, ONLY LET
 //PLAYER ESCAPE WHEN THEY COLLECT ALL KEYS, WHEN KEY IS PRESSED GAME START, FOG IN ALL ROOM WHEN NOT IN THEM
 
 let grid = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1 ,1], //MAIN SCREEN
@@ -63,21 +63,25 @@ let quizBg;
 let replicateBg;
 let keyImg;
 let lockImg;
-let state = "mazeRoom";
+let windowHeight = window.innerHeight;
+let windowWidth = window.innerWidth;
+let state = "mainRoom";
             
 function setup() {
   //make the canvas the largest square that you can...
   if (windowWidth < windowHeight) {
     createCanvas(windowWidth, windowWidth);
+    
   }
   else {
     createCanvas(windowHeight, windowHeight);
   }
-
-  cellSize= height/grid.length;
+  
+  cellSize= window.innerHeight/grid.length;
 
   //add player to MAIN SCREEN
   grid[player.y][player.x] = PLAYER;
+  
 }
 
 function draw() {
@@ -134,15 +138,15 @@ function displayMaze () {
     for (let x = 0; x < maze[y].length; x++) {
       if (maze[y][x] === IMPASSIBLE){
         fill("black");
-        image(wallImg, x * cellSize, y * cellSize, cellSize);
+        image(wallImg, x * cellSize, y * cellSize, cellSize, cellSize);
       }
-      else if(maze[y][x] === OPENTILE) {
+     else if(maze[y][x] === OPENTILE){
         fill("white");
-        image(pathImg, x * cellSize, y * cellSize, cellSize);
+        image(pathImg, x * cellSize, y * cellSize, cellSize,cellSize);
       }
-      else if (maze[y][x] === PLAYER) {
+      else if(maze[y][x] === PLAYER){
         fill("red");
-        square(x * cellSize, y * cellSize, cellSize);
+        square(x * cellSize, y * cellSize, cellSize,cellSize);
       }
     }
   }
