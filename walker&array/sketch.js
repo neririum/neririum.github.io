@@ -50,6 +50,7 @@ function draw() {
 }
 
 function mousePressed() {
-  let myWalker = new Walker(mouseX, mouseY, "red");
+  let theColour = color(random(255), random(255), random(255),);
+  let myWalker = new Walker(mouseX, mouseY, theColour);
   theWalkers.push(myWalker);
 }
