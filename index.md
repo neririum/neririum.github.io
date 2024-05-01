@@ -14,6 +14,7 @@
 - [Character in grid](grid2)
 - [Grid Game](ggame)
 - [Walker OOF](walker)
+- [Walker with array](walker with array)
 
 ## Projects
 - [Interactive Scene](pacman)
