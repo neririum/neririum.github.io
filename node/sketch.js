@@ -34,6 +34,7 @@ function mousePressed() {
   points.push(somePoint);
 }
 
+
 class MovingPoint {
   constructor(x, y) {
     this.speed = 5;
