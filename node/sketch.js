@@ -54,7 +54,6 @@ class MovingPoint {
     noStroke();
     fill(this.color);
     circle(this.x, this.y, this.radius*2);
-    
   }
 
   update() {
