@@ -16,6 +16,8 @@
 - [Walker OOF](walker)
 - [Walker with array](walker&array)
 - [test](testing)
+- [recursive circle](recursive-circle)
+- [Sierpinski Triangle](sier-triangle)
 
 ## Projects
 - [Interactive Scene](pacman)
