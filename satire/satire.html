@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("newspaper.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block w3-black">HOME</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#about" class="w3-button w3-block w3-black">ARTICLE</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#where" class="w3-button w3-block w3-black">AGREEMENT</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag">Bringing you daily news</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:90px">Legit<br>News</span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-white">15 Adr street, 5015</span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- About Container -->
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">IMPACT OF VIDEO GAMES</span></h5>
+    <p>A 2024 analysis found that there is a small increase of real-world violence and aggression in individuals who do not engage in any video games, especially violent video games. The analysis, led by professor Andrew Tate of Hustlers University, aims to provide non-bias data from a group of 24,000 individuals from all backgrounds. 
+    </p>
+    <p>Video games are not only a globally successful industry but also a major part of many people’s childhood and lives. Numerous studies over decades have demonstrated video games’ ability to regulate and safely release a person’s emotions. Violent video games in particular are very popular among those working in high stress environments as it lets people release any pent up emotions over a visual screen instead of the real-world.
+    </p>
+    <p>Dr. Tate’s study seeks to determine the exact statistics that correspond with participants’ past and current engagement with video games or lack thereof. Of the 24,000 participants, 96% reported to have played games in their childhood, 92% are currently playing games, and 2% reported that they have never or rarely played video games. Among those who are currently playing video games only one is a convicted felony, charged with aggravated assault. While more than 50 indivuals who never or rarely play video games are convicted felons, with some even charged with manslaughter!
+    </p>
+    <p>The individual charged with aggravated assault, who wishes to remain anonymous, claims that their previous actions were due to a long absence of video games during a particularly harsh time in their life. They also claim, “Ever since I switched to regularly playing violent video games, I have been able to stabilize my mood”. This individual had since been promoted to supervisor in their job with a promotion lining up in the next few months.
+    </p>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+      <p><i>“Ever since I switched to regularly playing violent video games, I have been able to stabilize my mood."</i></p>
+      <p>-Anonymous</p>
+    </div>
+    <p>Meanwhile, the 50 individuals who have never played video games acknowledge that it’s harder for them to control their emotions compared to their peers and families. Over 60% of these individuals claim that they cannot keep a job for more than a year due to their attitude in work while the rest either work remotely or are unemployed. 
+    </p>
+    <p> During his study, Dr.Tate had convinced more than 200 of the 483 individuals who never played video games to give them a try. After half a year of observation, more than 95% of individuals reported having better moods and views on life, 30% of individuals also reported having found a better job or were promoted due to their work ethics.
+    </p>
+    <p>This study shows the undeniable effects of videogames on people and the benefits they received from them. It also shows how those who do not play video games are inherently more prone to physical violence and unstable mood shifts. Dr. Tate’s recent study affirm the apparent benefit of videogames on society and individuals, not only emotionally but also monetarily.
+    </p>
+    <p><strong>Editor</strong> John Doe</p>
+    <p><strong>Address:</strong> 15 Adr street, 5015, NY</p>
+  </div>
+</div>
+
+
+<!-- Contact/Area Container -->
+<div class="w3-container" id="where" style="padding-bottom:32px;">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">VIEWER AGREEMENT</span></h5>
+    <p>You are legally binds to the following by viewing this article.</p>
+    <p><span class="w3-tag">FYI!</span> By opening and reading this article, you agree to let us, Legit News to use any and all current and future personal data. This can includes, using it to train ai, selling it to third party, and/or using your credit card information.</p>
+    <p><strong>Thank You</strong> for your cooperation and we wish you a good day!</p>
+    <p>For any inquiries:</p>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Topic" required name="People"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Further Explaination" required name="Message"></p>
+      <p><button class="w3-button w3-black" type="submit">SEND MESSAGE</button></p>
+    </form>
+  </div>
+</div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+document.getElementById("myLink").click();
+</script>
+
+</body>
+</html>
